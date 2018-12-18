@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+북마크 상세보기
+{% endblock%}
+{% block content %}
+	{# 해당 HTML은 obj 변수를 사용가능. obj = 북마크 객체 #}
+	<h1>{{ obj.bookname }}</h1>
+	<h2>해당객체의 ID값 : {{ obj.id }}</h2>
+	<h2>해당객체의 URL : {{ obj.bookurl }}</h2>
+	<P> 객체가 저장하지 않은 변수 호출 : {{ obj.a }} </P>
+	<p> 뷰에서 넘겨주지 않은 변수 호출 : {{ b }} </p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{%extends 'base.html' %}
+{%block title%}
+설문조사 수정 
+{%endblock%}
+{% block content %}
+	<h1>설문조사 수정</h1>
+	<form action="" method="post">
+		{% csrf_token %}
+		<table>
+			{{ b.as_table }}
+		</table>
+		<input type="submit" value="수정">
+	</form>
+{% endblock %}

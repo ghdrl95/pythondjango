@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+{{obj.headline}}
+{% endblock %}
+{% block content %}
+<table width="90%">
+	<tr>
+		<th>제목</th>
+		<th>{{obj.headline}}</th>
+	</tr>
+	<tr>
+		<th>글쓴이/작성일</th>
+		<th>{{obj.author}}/{{obj.pub_date}}</th>
+	</tr>
+	<tr>
+		<th colspan="2">
+			<!-- Post 객체와 연결된 이미지, 파일 출력 -->
+			{% for i in obj.postimage_set.all %}
+				<img src="{{ i.image.url }}" width = 30%>
+			{%endfor%}
+			{% for f in obj.postfile_set.all %}
+				<a href="{{ f.file.url}}" download>첨부파일{{forloop.counter}}</a>
+			{% endfor %}
+			<pre>{{obj.content}}</pre>
+		</th>
+	</tr>
+</table>
+{% endblock %}

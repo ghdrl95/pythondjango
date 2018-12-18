@@ -1,0 +1,19 @@
+{%extends 'base.html' %}
+{% block title %}
+북마크 리스트
+{% endblock %}
+{% block content %}
+	<h1> BookMark 모델 클래스에 저장된 객체 리스트</h1>
+	{# list : 뷰에서 넘겨준 북마크 객체 리스트 #}
+	{# obj : 북마크 객체. obj.bookname / obj.bookurl 로 객체가 저장한 변수값을 추출 #}
+	<ol>
+		{% for obj in list  %}
+			<li>
+				<a href="{% url 'bookdetail' obj.id %}">{{obj.bookname}}</a> 
+				: 
+				<a href=" {{ obj.bookurl }} ">바로가기</a> 
+			</li>
+		{% endfor %}
+	</ol>
+	<a href="{% url 'index' %}">메인페이지로 가기</a>
+{% endblock %}

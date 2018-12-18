@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+{%block title%}
+설문조사 목록
+{%endblock%}
+{% block content %}
+	<table width=100%>
+		<caption>설문조사목록</caption>
+		<tr>
+			<th> 질문지 </th>
+			<th> 생성일 </th>
+		</tr>
+	{% for obj in a %}
+		<tr>
+			<th> <a href="{% url 'vote:detail' obj.id %}">{{ obj.name }}</a> </th>
+			<th> {{ obj.date }} </th>
+		</tr>
+	{% endfor   %}
+	</table>
+	
+	<!-- 설문조사 등록 링크 -->
+	<a href="{% url 'vote:qr' %}">설문지 생성하기</a>
+	<a href="{% url 'vote:cr' %}">답변항목 생성하기</a>
+{% endblock %}
+
+
+
+
+

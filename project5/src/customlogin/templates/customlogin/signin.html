@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title%}
+로그인 
+{%endblock%}
+{% block content %}
+	{%if error%}<!-- if error is not None -->
+		<h3 style="color: red;">{{error}}</h3>
+	{%endif %}
+	<form action="" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="nexturl" value="{{nexturl}}">
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input type="submit" value="로그인">
+	</form>
+	<a href="{% url 'cl:signup' %}">회원가입</a>
+	<br>
+	<a href="{% url 'social:begin' 'google-oauth2' %}">구글로 로그인하기</a>
+{%endblock %}
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+게시판
+{% endblock %}
+
+{% block content %}
+{# post_list : Post 객체 리스트 #}
+{# page_obj : 페이지 관련 객체 #}
+{# page_obj.has_previous : 이전 페이지가 존재하는지 확인하는 함수 #}
+{# page_obj.has_next  : 다음 페이지가 존재하는지 확인하는 함수 #}
+<!-- 이전페이지, 다음페이지가 존재하는지 확인 후 링크 생성 -->
+{% if page_obj.has_previous %}
+<!-- 현재 페이지에 GET방식으로 재요청. page 변수에 들어있는 값에 해당하는 페이지로 이동-->
+	<a href="?page={{page_obj.previous_page_number}}">이전페이지</a>
+{% endif %}
+{% if page_obj.has_next %}
+	<a href="?page={{page_obj.next_page_number}}">다음페이지</a>
+{% endif %}
+
+<table width="90%">
+	<tr>
+		<th>글번호</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>작성일</th>
+	</tr>
+	{% for post in post_list %}
+		<tr>
+			<th>{{post.id}}</th>
+			
+			<th>
+				<a href="{% url 'blog:detail' post.id %}">{{post.headline}}</a>
+			</th>
+			
+			<th>{{post.author}}</th>
+			<th>{{post.pub_date}}</th>
+		</tr>
+	{% endfor%}
+</table>
+
+<a href="{% url 'blog:postR' %}">글쓰기</a>
+
+
+
+
+
+
+
+{% endblock %}

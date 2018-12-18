@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>나만의 홈페이지 {%block title%} {% endblock %}</title>
+</head>
+<body>
+<h2>나만의 홈페이지 </h2>
+<a href="{% url 'index' %}">북마크</a>
+<a href="{% url 'vote:index'%}">설문조사</a>
+<a href="{% url 'blog:index' %}">블로그</a>
+<br>
+{% if user.is_authenticated %}
+	<!-- 로그인 상태에 대한 처리 -->
+	{{user.username}}님 환영합니다!
+	<a href="{% url 'cl:signout' %}">로그아웃</a>
+{% else %}
+	<!-- 비로그인 상태에 대한 처리 -->
+	<a href="{% url 'cl:signin' %}">로그인</a>
+	<a href="{% url 'cl:signup' %}">회원가입</a>
+{% endif %}
+<hr>
+{% block content %}
+{% endblock %}
+<hr>
+<p>서울시 종로구</p>
+<p>010-1234-5678</p>
+</body>
+</html>

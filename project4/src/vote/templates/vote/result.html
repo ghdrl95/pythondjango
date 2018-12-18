@@ -1,0 +1,23 @@
+{%extends 'base.html' %}
+{%block title%}
+투표 결과
+{%endblock%}
+{% block content %}
+	<h1>{{q.name}}의 투표결과</h1>
+	<table>
+		<tr>
+			<th>답변항목</th>
+			<th>투표 수</th>
+		</tr>
+		{% for c in q.choice_set.all %}
+			<tr>
+				<th>{{c.name}}</th>
+				<th>{{c.votes}}</th>
+			</tr>
+		{% endfor %}
+	</table>
+	<a href="{% url 'vote:index' %}"> 설문리스트로 돌아가기 </a>
+{%endblock%}
+
+
+

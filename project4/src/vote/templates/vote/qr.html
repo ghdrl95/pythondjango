@@ -1,0 +1,20 @@
+{%extends 'base.html' %}
+{%block title%}
+설문조사 등록
+{%endblock%}
+{% block content %}
+	<h1>설문조사 등록</h1>
+	<form action="" method="post">
+		{% csrf_token %}
+		<!-- a == QuestionForm 객체
+		a.as_p == 파이썬 코드에서 a.as_p() 동일
+		as_p : <p> </p> 사이에 <input>와 <label>를 넣는 형식으로 HTML 코드를 생성  -->
+		{{ a.as_p }} 
+		<input type="submit" value="질문글 쓰기">
+	</form>
+{% endblock %}
+
+
+
+
+

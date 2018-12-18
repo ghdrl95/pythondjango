@@ -1,0 +1,32 @@
+{%extends 'base.html' %}
+{%block title%}
+설문조사 상세보기
+{%endblock%}
+{% block content %}
+	<h1>{{ q.name }}</h1>
+	<form action="{% url 'vote:vote' %}" method ="post">
+		{# csrf_token : csrf(외부 사이트에서 입력양식으로 접근) 공격 방지 #}
+		{% csrf_token %}
+		{# 모델클래스명A.모델클래스명B_set : A모델클래스와 연결된 B 객체들을 대상으로 추출 #}
+		{% for c in q.choice_set.all  %}
+			<!-- forloop.counter : 현재 반복문이 반복된 횟수를 저장한 변수 -->
+			<!-- q.choice_set.all : q(Question객체)와 연결된 choice객체들을 모두 추출 -->
+			<input type="radio" id='a{{forloop.counter}}' 
+			       name='select' value="{{ c.id }}">
+			<label for = 'a{{forloop.counter}}'> {{ c.name }} </label>
+			<a href="{% url 'vote:cu' c.id %}">수정</a>
+			<a href="{% url 'vote:cd' c.id %}">삭제</a>
+			<br>
+		{% endfor %}
+		<input type="submit" value="투표">
+	</form>
+	<br>
+	<a href="{% url 'vote:qu' q.id %}">해당 설문조사 수정</a>
+	<br>
+	<a href="{% url 'vote:qd' q.id %}">해당 설문조사 삭제</a>
+{% endblock %}
+
+
+
+
+

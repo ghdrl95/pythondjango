@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table width=100%>
+		<caption>설문조사목록</caption>
+		<tr>
+			<th> 질문지 </th>
+			<th> 생성일 </th>
+		</tr>
+	{% for obj in a %}
+		<tr>
+			<th> <a href="{% url 'vote:detail' obj.id %}">{{ obj.name }}</a> </th>
+			<th> {{ obj.date }} </th>
+		</tr>
+	{% endfor   %}
+	</table>
+</body>
+</html>
+
+
+
+
+
